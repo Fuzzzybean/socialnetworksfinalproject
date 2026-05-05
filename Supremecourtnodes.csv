@@ -1,0 +1,99 @@
+Id,type,Name,Citations
+A1,0,Brown v. Board of Education,23395
+A2,0,"Roe et al. v. Wade, District Attorney of Dallas County",21692
+A3,0,Griswold et al. v. Connecticut,18736
+A4,0,Miranda v. Arizona ,14740
+A5,0,New York Times Co. v. Sullivan,13492
+A6,0,Erie Railroad Co. v. Tompkins,11935
+A7,0,"Chevron U.S.A. Inc. v. Natural Resources Defense Council, Inc., et al.",11742
+A8,0,Mapp v. Ohio ,11409
+A9,0,"Gideon v. Wainwright, Corrections Director ",10983
+A10,0,Lochner v. New York ,10753
+A11,0,Katz v. United States ,10485
+A12,0,Silas Talbot v. Hans Fred. Seeman ,10343
+A13,0,Plessy v. Ferguson ,10087
+A14,0,Baker et al. v. Carr et al.,9835
+A15,0,Loving et ux. v. Virginia ,9625
+A16,0,Meyer v. State of Nebraska,9383
+A17,0,United States v. Carolene Products Co. ,9126
+A18,0,"Pierce, Governor of Oregon, et al. v. Society of Sisters – Pierce, Governor of Oregon, et al. v. Hill Military Academy ",8758
+A19,0,West Virginia State Board of Education et al. v. Barnette et al.,8726
+A20,0,"Planned Parenthood of Southeastern Pennsylvania et al. v. Casey, Governor of Pennsylvania, et al.",8722
+A21,0,San Antonio Independent School District et al. v. Rodriguez et al. ,8695
+A22,0,Terry v. Ohio ,8423
+A23,0,"Buckley et al. v. Valeo, Secretary of the United States Senate, et al.",8372
+A24,0,Olmstead et al. v. United States – Green et al. v. Same – McInnis v. Same,8324
+A25,0,Wisconsin v. Yoder et al. ,8161
+C1,0,"Anderson et al. v. Liberty Lobby, Inc. et al.",146044
+C2,0,Bell Atlantic Corp. et al. v. Twombly et al.,137816
+C3,0,"Celotex Corp v. Catrett, Administratrix of the Estate of Catrett",134545
+C4,0,"Strickland, Superintendent, Florida State Prison, et al. v. Washington",108480
+C5,0,"Ashcroft, Former Attorney General, et al. v. Iqbal et al.",108107
+C6,0,"Matsushita Electronic Industrial Co., Ltd. et al. v. Zenith Radio Corp. et al.",69542
+C7,0,Jackson v. Virginia et al.,63109
+C8,0,Miranda v. Arizona,49020
+C9,0,Anders v. California,48645
+C10,0,"Slack v. McDaniel, Warden, et al. ",41747
+C11,0,"Thomas v. Arn, Superintendent, Ohio Reformatory for Women",40872
+C12,0,Monell et al. v. Department of Social Services of the City of New York et al. ,35714
+C13,0,McDonnell Douglas Corp. v. Green,33901
+C14,0,Conley et al. v. Gibson et al.,33578
+C15,0,"Richardson, Secretary of Health Education, and Welfare v. Perales",33327
+C16,0,Terry v. Ohio ,30275
+C17,0,Haines v. Kerner et al.,29570
+C18,0,"Miller-El v. Cockrell, Director, Texas Department of Criminal Justice, Institutional Division",28888
+C19,0,Brady v. Maryland,27372
+C20,0,"Estelle, Corrections Director, et al. v. Gamble ",27210
+C21,0,"Farmer v. Brennan, Warden, et al.",25920
+C22,0,Neitzke et al. v. Williams,25920
+C23,0,Harlow et al. v. Fitzgerald,21227
+C24,0,"Williams v. Taylor, Warden",20761
+C25,0,Chapman et al. v. California,19811
+1,1,attorney general of the United States,1
+3,1,city/town/village government,1
+4,1,state commission/board/authority,1
+8,1,government employee or job applicant,1
+9,1,female governmental employee or job applicant,1
+16,1,judge,1
+19,1,governmental official,1
+21,1,local school district or board of education,1
+23,1,U.S. senator,1
+27,1,United States,1
+28,1,State,1
+100,1,person accused/indicted of crime,1
+106,1,alien/person subject to denaturalization,1
+122,1,business or corporation,1
+126,1,person convicted of crime,1
+130,1,religious organization or person,1
+134,1,consumer,1
+135,1,creditor,1
+140,1,disabled person or disability claimant,1
+145,1,employee or job applicant,1
+147,1,electric equipment manufacturer,1
+150,1,environmental organization,1
+151,1,employer,1
+155,1,female,1
+159,1,foreign nongovernmental entity,1
+165,1,health organization or person,1
+174,1,injured person/legal entity,1
+182,1,racial or ethnic minority employee,1
+184,1,manufacturer,1
+190,1,newspaper/news service,1
+195,1,owner/landlord/property claimant,1
+198,1,oil company or natural gas producer,1
+202,1,parent or parents,1
+205,1,telephone/telecommunications company,1
+206,1,physician or dentist,1
+208,1,physically injured person,1
+211,1,political candidate/party/official,1
+213,1,indigent defendant,1
+215,1,prisoner/inmate,1
+220,1,publisher/publishing company,1
+224,1,racial or ethnic minority student,1
+231,1,railroad,1
+232,1,private school/college/university,1
+236,1,spouse or former spouse,1
+249,1,union/labor organization,1
+251,1,voter/prospective voter,1
+343,1,Federal Election Commission,1
+362,1,Department of Health Education and Welfare,1
