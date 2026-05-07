@@ -22,7 +22,21 @@ my_theme <- bs_theme(
   font_scale = 0.95
 ) |> 
   bs_add_rules(
-    ".card { 
+    "
+    .key-finding {
+      background: #f0fdf4;
+      border-left: 4px solid #059669;
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+      .highlight-box {
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }.card { 
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
       border-radius: 12px; 
       border: none;
@@ -105,36 +119,39 @@ ui <- page_sidebar(
     
     # Sidebar header
     div(
-      class = "sidebar-header",
-      icon("sliders", style = "font-size: 2.5rem; color: #1e3a8a; margin-bottom: 0.5rem;"),
-      h4("Visualization Controls", style = "margin: 0.5rem 0 0 0; color: #1e3a8a;")
-    ),
-    
-    # Static network controls
-    div(
       class = "control-section",
       h5(
-        icon("chart-network"), 
-        "Static Network Options", 
+        icon("chart-bar"), 
+        "Centrality Analysis", 
         style = "color: #475569; margin-bottom: 1rem; font-weight: 600;"
       ),
       selectInput(
-        "select", 
-        "Display Mode",
+        "centrality_measure",
+        "Centrality Measure",
         choices = list(
-          "Standard View" = "A", 
-          "Alternative View" = "B"
+          "Degree Centrality" = "degree",
+          "Betweenness Centrality" = "betweenness",
+          "Closeness Centrality" = "closeness"
         ),
-        selected = "A"
-      ),
-      selectInput(
-        "size",
-        "Node Size By",
-        choices = list(
-          "Degree Centrality" = "degree", 
-          "Betweenness Centrality" = "betweenness"
-        ), 
         selected = "degree"
+      ),
+      sliderInput(
+        "top_n",
+        "Number of Top Actors",
+        min = 5,
+        max = 20,
+        value = 10,
+        step = 1
+      ),
+      radioButtons(
+        "actor_type_filter",
+        "Filter by Type",
+        choices = c(
+          "All" = "all",
+          "Cases Only" = "cases",
+          "Representatives Only" = "reps"
+        ),
+        selected = "all"
       )
     ),
     
@@ -180,6 +197,57 @@ ui <- page_sidebar(
         " to create a systematic review of influential litigants in United States Supreme Court cases."
       ),
       
+      card(
+        card_header(
+          icon("compass"),
+          "Welcome: How to Explore This Network Analysis"
+        ),
+        card_body(
+          div(
+            class = "highlight-box",
+            h4(icon("lightbulb"), "Quick Start Guide", style = "margin-top: 0; color: #92400e;"),
+            p(
+              style = "margin-bottom: 0.5rem; color: #78350f;",
+              strong("Navigate through this app to discover:"),
+              tags$ul(
+                tags$li("How legal representatives connect landmark Supreme Court cases"),
+                tags$li("Which litigants appear in multiple influential cases"),
+                tags$li("The difference between highly connected vs. broker positions in legal networks")
+              )
+            )
+          ),
+          
+          h5(icon("mouse-pointer"), "Interactive Features", style = "color: #1e3a8a; margin-top: 1.5rem;"),
+          tags$ul(
+            style = "color: #334155; line-height: 1.8;",
+            tags$li(strong("Toggle between centrality measures"), " in the sidebar to see how the most connected figures (high degree) are not always those in broker positions (high betweenness). This demonstrates that some lawyers may argue fewer cases but serve as critical bridges between different legal domains."),
+            tags$li(strong("Adjust the network layout"), " to reveal different structural patterns in how cases and lawyers connect."),
+            tags$li(strong("Use the interactive network"), " to hover over nodes for detailed statistics and drag nodes to explore connections."),
+            tags$li(strong("Examine the bar charts"), " to identify top actors by different centrality measures and filter by case or representative type.")
+          ),
+          
+          div(
+            class = "key-finding",
+            h5(icon("star"), "Key Finding #1: The Power of Legal Brokers", style = "margin-top: 0; color: #065f46;"),
+            p(
+              style = "color: #047857; margin-bottom: 0;",
+              "When you compare degree centrality with betweenness centrality, you'll notice that some legal representatives have moderate degree centrality but exceptionally high betweenness. These individuals serve as crucial bridges connecting different clusters of cases, often spanning civil rights, criminal procedure, and constitutional law."
+            )
+          ),
+          
+          div(
+            class = "key-finding",
+            h5(icon("star"), "Key Finding #2: Citation Patterns Reveal Influence", style = "margin-top: 0; color: #065f46;"),
+            p(
+              style = "color: #047857; margin-bottom: 0;",
+              "The network reveals that cases with the highest citation counts tend to cluster together, 
+              connected by lawyers who specialized in constitutional law. 
+              This pattern suggests that landmark precedents don't exist in isolation—they form interconnected legal doctrines through the work of specialized attorneys."
+            )
+          )
+        )
+      ),
+      
       div(
         class = "info-box",
         h5(icon("database"), "Dataset Construction", style = "margin-top: 0; color: #1e3a8a;"),
@@ -204,15 +272,6 @@ ui <- page_sidebar(
         the number of citations for each case is used to create the size of each node."
       ),
       
-      p(
-        style = "font-size: 1.05rem; color: #334155;",
-        "Due to the different roles of a representative in any legal case– petitioner v. respondent
-– I codified each edge as either 'R' for respondent or 'P' for petitioner to better 
-        visualize by color how these edges connect certain types of litigants to certain cases. For 
-        further visual mapping purposes, the fifty cases are also color coded as an article citation or
-         case citation to distinguish whether the case is more impactful 
-        as a legal precedent or as a social/political turning point."
-      ),
       
       div(
         class = "info-box",
@@ -279,6 +338,26 @@ ui <- page_sidebar(
           " Supreme Court Cases  ",
           tags$span(style = "color: #4ECDC4; font-size: 1.2rem;", "■"), 
           " Legal Representatives"
+        )
+      )
+    ),
+    
+    card(
+      full_screen = TRUE,
+      card_header(
+        icon("chart-bar"),
+        "Top Actors by Centrality Measure"
+      ),
+      card_body(
+        plotOutput("centrality_chart", height = "600px")
+      ),
+      card_footer(
+        div(
+          style = "color: #64748b;",
+          icon("info-circle"), 
+          " This chart shows the top actors ranked by the selected centrality measure. ",
+          "Toggle between measures to see how rankings change. High degree = many connections; ",
+          "High betweenness = bridge positions; High closeness = shortest paths to others."
         )
       )
     )
@@ -391,20 +470,14 @@ server <- function(input, output) {
       mutate(component = group_components()) |>
       group_by(component) |>
       filter(n() > 3) |>
-      ungroup()
-    
-    C_graph <- scbp_tidy |>
-      activate(nodes) |>
-      filter(str_starts(name, "C") | str_starts(name, "[0-9]")) |>
-      activate(nodes) |>
-      filter(centrality_degree() > 0) |>
+      ungroup() |>
       mutate(
         degree = centrality_degree(),
         betweenness = centrality_betweenness()
       )
     
     # Prepare nodes for visNetwork
-    nodes_df <- C_graph |>
+    nodes_df <- scbp_tidy |>
       activate(nodes) |>
       as_tibble() |>
       mutate(
@@ -417,12 +490,12 @@ server <- function(input, output) {
           "Degree: ", round(degree, 2), "<br>",
           "Betweenness: ", round(betweenness, 2)
         ),
-        value = if (input$size_by == "degree") degree else betweenness,
+        value = Citations,
         group = ifelse(type, "Case", "Other")
       )
     
     # Prepare edges for visNetwork
-    edges_df <- C_graph |>
+    edges_df <- scbp_tidy |>
       activate(edges) |>
       as_tibble() |>
       rename(from = 1, to = 2)
